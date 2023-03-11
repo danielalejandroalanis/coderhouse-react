@@ -1,7 +1,8 @@
 import React from "react";
 import NavItem from "./NavItem";
 import styles from "./NavComponent.module.css";
-import { SearchBarComponent } from "../SearchBar";
+import { SearchBarComponent } from "../";
+
 export const NavBarComponent = () => {
   return (
     <>

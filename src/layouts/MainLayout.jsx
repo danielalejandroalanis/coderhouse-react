@@ -1,5 +1,5 @@
 import React from "react";
-import { NavBarComponent } from "../components";
+import {NavBarComponent} from "../components"
 
 export const MainLayout = ({ children }) => {
   const mainLayoutStyles = {
