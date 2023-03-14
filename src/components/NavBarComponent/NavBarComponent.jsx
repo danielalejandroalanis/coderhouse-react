@@ -7,7 +7,6 @@ export const NavBarComponent = () => {
   return (
     <>
       <header>
-        Tienda Daniel
         <nav className={styles.nav}>
           <div className={styles.navItems}>
             <NavItem label="Home" src="#" />
