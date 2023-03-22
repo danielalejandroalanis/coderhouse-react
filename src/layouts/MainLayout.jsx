@@ -21,7 +21,6 @@ export const MainLayout = ({ children }) => {
   return (
     <div style={mainLayoutStyles}>
       <div className={navWrapperStyles}>
-        <NavBarComponent />
       </div>
       <div style={childrenStyles}>{children}</div>
     </div>
