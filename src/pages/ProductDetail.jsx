@@ -1,5 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
+import { CartButtons } from "../components";
 import { ProductsData } from '../json';
 
 export const ProductDetail = () => {
@@ -16,7 +17,7 @@ export const ProductDetail = () => {
       <img src={producto.imagen} alt={producto.nombre} className="img-fluid" />
       <p>{producto.descripcion}</p>
       <span className="precio">${producto.precio}</span>
-      <button className="btn btn-primary">Agregar al carrito</button>
+      <CartButtons />
     </div>
   );
 };
