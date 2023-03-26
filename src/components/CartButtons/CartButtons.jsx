@@ -2,6 +2,7 @@ import React from "react";
 
 export const CartButtons = () => {
   const [state, setState] = React.useState(1);
+  const [loading, setLoading] = React.useState(true);
 
   const handleMoreClick = () => {
     if (state === 5) return;
@@ -18,9 +19,24 @@ export const CartButtons = () => {
 
   }
 
-  
-  
-  return (
+  React.useEffect(() => {
+    // getAllProducts()
+    //   .then((res) => {
+    //     setLoading(true);
+    //     setProductsData(res);
+    //   })
+    //   .catch((err) => console.error(err))
+    //   .then(() => setLoading(false));
+
+      setTimeout(() => {
+        setLoading(false)
+      }, 2000)
+
+
+
+  }, []);
+
+  return loading ? <div>loading</div> : (
     <>
       <div>{state}</div>
       <button onClick={handleLessClick}>Agregar -</button>
@@ -28,5 +44,5 @@ export const CartButtons = () => {
       <button onClick={handleMoreClick}>Agregar +</button>
       <button>Agrega al Carrito</button>
     </>
-  );
+  )
 };
