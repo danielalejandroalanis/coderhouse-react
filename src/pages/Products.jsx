@@ -20,10 +20,6 @@ export const Products = () => {
       .catch((err) => console.error(err))
       .then(() => setLoading(false));
 
-      // setTimeout(() => {
-      //   setLoading(false)
-      // }, 2000)
-
   }, []);
 
   if (!loading) {

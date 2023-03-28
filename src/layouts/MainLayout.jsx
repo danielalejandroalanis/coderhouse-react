@@ -1,28 +1,18 @@
-import React from "react";
-import { NavBarComponent } from "../components";
+import React, { useContext } from "react";
+import { ThemeContext } from "../context";
 
 export const MainLayout = ({ children }) => {
+  const { isDarkTheme } = useContext(ThemeContext);
+
   const mainLayoutStyles = {
-    backgroundColor: "#1f1b24",
-    color: "white",
-    height: "100vh",
-    width: "100vw",
+    backgroundColor: isDarkTheme ? "#1f1b24" : "#fff",
+    color: isDarkTheme ? "white" : "black",
+    minHeight: "100vh",
+    height: "fit-content",
+    maxWidth: "100%",
     display: "flex",
     flexDirection: "column",
   };
-  const navWrapperStyles = {
-    height: "10vh",
-    width: "100vw",
-  }
-  const childrenStyles = {
-    height: "90vh",
-    width: "100vw",
-  }
-  return (
-    <div style={mainLayoutStyles}>
-      <div className={navWrapperStyles}>
-      </div>
-      <div style={childrenStyles}>{children}</div>
-    </div>
-  );
+
+  return <div style={mainLayoutStyles}>{children}</div>;
 };

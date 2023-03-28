@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
+import { Button } from "react-bootstrap";
+import { useParams } from "react-router-dom";
+import { CartContext } from "../../context";
 
 export const CartButtons = () => {
   const [state, setState] = React.useState(1);
-  const [loading, setLoading] = React.useState(true);
 
+  const { productId } = useParams();
+
+  const { itemCount, setItemCount } = useContext(CartContext);
+
+  console.log(itemCount);
   const handleMoreClick = () => {
     if (state === 5) return;
     setState(state + 1);
@@ -13,36 +20,52 @@ export const CartButtons = () => {
     setState(state - 1);
   };
 
-  const handleOnChange = (e) => {
-    console.log(e.target.id)
-    console.log(e.target.value)
+  const addToCart = () => {
+    const existingProduct = itemCount.products.find(
+      (p) => p.productId === productId
+    );
+    if (existingProduct) {
+      existingProduct.qty += state;
+    } else {
+      const newProduct = {
+        productId,
+        qty: state,
+      };
+      setItemCount((prevState) => ({
+        qtyItems: prevState.qtyItems + state,
+        products: [...prevState.products, newProduct],
+      }));
+    }
+  };
 
-  }
-
-  React.useEffect(() => {
-    // getAllProducts()
-    //   .then((res) => {
-    //     setLoading(true);
-    //     setProductsData(res);
-    //   })
-    //   .catch((err) => console.error(err))
-    //   .then(() => setLoading(false));
-
-      setTimeout(() => {
-        setLoading(false)
-      }, 2000)
-
-
-
-  }, []);
-
-  return loading ? <div>loading</div> : (
-    <>
-      <div>{state}</div>
-      <button onClick={handleLessClick}>Agregar -</button>
-      <input onChange={handleOnChange} id="valueInput" placeholder="Cantidad custom" />
-      <button onClick={handleMoreClick}>Agregar +</button>
-      <button>Agrega al Carrito</button>
-    </>
-  )
+  return (
+    <div className="d-flex align-items-center">
+      <div className="d-flex w-25">
+        <Button
+          onClick={handleLessClick}
+          variant="outline-secondary"
+          className="rounded-0"
+        >
+          -
+        </Button>
+        <input
+          type="text"
+          className="form-control form-control-sm text-center rounded-0"
+          value={state}
+          placeholder="Cantidad custom"
+          id="valueInput"
+        />
+        <Button
+          onClick={handleMoreClick}
+          variant="outline-secondary"
+          className="rounded-0"
+        >
+          +
+        </Button>
+      </div>
+      <Button className="ml-2" variant="primary" onClick={addToCart}>
+        Agregar al Carrito
+      </Button>
+    </div>
+  );
 };
