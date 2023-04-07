@@ -1,13 +1,48 @@
-import React from 'react'
+import React from "react";
+import {
+  collection,
+  getDocs,
+  getFirestore,
+  query,
+  where,
+  doc
+} from "firebase/firestore";
+
+import { Card, Loader } from "../components";
+
 
 export const Ofertas = () => {
-  return (
-    <div>
-        <ol>
-            <li>1</li>
-            <li>2</li>
-            <li>3</li>
-        </ol>
+  const [loading, setLoading] = React.useState(true);
+  const [productsData, setProductsData] = React.useState([]);
+  const [error, setError] = React.useState(false);
+  React.useEffect(() => {
+    const db = getFirestore();
+    const itemsCollectionFiltered = query(
+      collection(db, "products"),
+      where("activo", "==", false),
+      where("stock", ">", 5)
+    );
+    getDocs(itemsCollectionFiltered)
+      .then((products) => {
+        if (products.length === 0) {
+          setError(true);
+        }
+        setProductsData(
+          products.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
+        );
+      })
+      .catch((err) => console.log(err))
+      .then(() => setLoading(false));
+  }, []);
+
+ 
+  return loading ? (
+    <Loader />
+  ) : (
+    <div className="productos">
+      {productsData.map((producto) => (
+        <Card key={producto.id} producto={producto} />
+      ))}
     </div>
-  )
-}
+  );
+};

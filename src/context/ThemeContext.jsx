@@ -9,7 +9,6 @@ export const ThemeProvider = ({ children }) => {
 
   useEffect(() => {
     localStorage.setItem("isDarkTheme", isDarkTheme);
-    console.log(isDarkTheme)
   }, [isDarkTheme]);
 
   return (

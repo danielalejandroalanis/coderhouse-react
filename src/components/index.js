@@ -3,3 +3,8 @@ export * from "./ProductCard/Card";
 export * from "./CartButtons/CartButtons";
 export * from "./Loader/Loader";
 export * from "./CartComponent/CartComponent";
+export * from "./NewProduct/NewProductComponent";
+export * from "./FormNewProduct/FormNewProduct";
+export * from "./CartDetailCard/CartDetailCard";
+export * from "./CartPaymentDetails/CartPaymentDetails";
+export * from "./PaymentStatusToast/PaymentSuccess";

@@ -15,9 +15,9 @@ export const NavBarComponent = () => {
       <header>Tienda Daniel</header>
       <div className={styles.navItems}>
         <NavItem label="Home" src="/" />
-        <NavItem label="Producto" src="/products" />
+        <NavItem label="Productos" src="/products" />
         <NavItem label="Ofertas" src="/ofertas" />
-        <CartComponent />
+        <NavItem label={<CartComponent />} src="/cart" />
         <Button onClick={() => setIsDarkTheme(!isDarkTheme)}>
           {isDarkTheme ? "Light" : "Dark"}
         </Button>

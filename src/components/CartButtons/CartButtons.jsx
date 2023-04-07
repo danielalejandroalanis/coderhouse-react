@@ -10,7 +10,6 @@ export const CartButtons = () => {
 
   const { itemCount, setItemCount } = useContext(CartContext);
 
-  console.log(itemCount);
   const handleMoreClick = () => {
     if (state === 5) return;
     setState(state + 1);
@@ -54,6 +53,7 @@ export const CartButtons = () => {
           value={state}
           placeholder="Cantidad custom"
           id="valueInput"
+          readOnly
         />
         <Button
           onClick={handleMoreClick}
